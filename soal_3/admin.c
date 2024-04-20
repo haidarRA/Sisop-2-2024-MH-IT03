@@ -80,8 +80,7 @@ void print_options() {
     printf("  -a : Melepaskan kendali atas proses pengguna\n");
 }
 
-//YA ALLAH FORMAT DARI TADI GA BENER TERUS
-//FUCK EMU OTORI
+
 void log_action(char *username, pid_t pid, char *process_name, int status) {
     time_t now;
     struct tm *local_time;
