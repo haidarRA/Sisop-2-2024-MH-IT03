@@ -16,20 +16,113 @@
 
 **soal :**
 
+Gavriel adalah seorang cyber security enthusiast. Suatu hari, ia dikontrak oleh sebuah perusahaan ternama untuk membuat sebuah program yang cukup rumit dengan bayaran jutaan rupiah. Karena tergoda dengan nominal bayaran tersebut, Gavriel langsung menerima tawaran tersebut. Setelah mencoba membuat dan mengembangkan program tersebut selama seminggu, laptop yang digunakan Gavriel mengalami overheat dan mati total sehingga harus dilarikan ke tukang servis terdekat. Karena keterbatasan waktu dalam pembuatan program dan tidak ingin mengecewakan perusahaan, Gavriel meminta bantuan kalian untuk membuat program tersebut dengan ketentuan sebagai berikut:
 
+- Program dapat menerima input path berupa ‘argv’ untuk mengatur folder dimana file akan dieksekusi
+  
+- Program tersebut berfungsi untuk mereplace string dengan ketentuan sebagai berikut:
+  
+- String m4LwAr3 direplace dengan string [MALWARE]
+  
+- String 5pYw4R3 direplace dengan string [SPYWARE]
+  
+- String R4nS0mWaR3 direplace dengan string [RANSOMWARE]
+  
+- Program harus berjalan secara daemon, dan tidak diperbolehkan menggunakan command system() dalam pembuatan program
+  
+- Program akan secara terus menerus berjalan di background dengan jeda 15 detik
+  
+- Catat setiap penghapusan string yang dilakukan oleh program pada sebuah file bernama virus.log dengan format: [dd-mm-YYYY][HH:MM:SS] Suspicious string at <file_name> successfully replaced!
 
+Contoh penggunaan: ./virus /home/user/virus
 
+Contoh isi file sebelum program dijalankan:
+```
+pU=-JWQ$5$)D-[??%AVh]$cB6bm4LwAr3jEQC2p3R{HV]=-AUaxj:Qe+h
+!aNX,i:!z3W=2;.tHc3&S+}6F)CFf%tfZLP1*w5m1PAzZJUux(
+Pd&f8$F5=E?@#[6jd{TJKj]5pYw4R3{KK1?hz384$ge@iba5GAj$gqB41
+#C&&a}M9C#f64Eb.?%c)dGbCvJXtU[?SE4h]BY4e1PR4nS0mWaR3{]S/{w?*
+```
 
+Contoh isi file setelah setelah program dijalankan:
+```
+pU=-JWQ$5$)D-[??%AVh]$cB6b[MALWARE]jEQC2p3R{HV]=-AUaxj:Qe+h
+!aNX,i:!z3W=2;.tHc3&S+}6F)CFf%tfZLP1*w5m1PAzZJUux(
+Pd&f8$F5=E?@#[6jd{TJKj][SPYWARE]{KK1?hz384$ge@iba5GAj$gqB41
+#C&&a}M9C#f64Eb.?%c)dGbCvJXtU[?SE4h]BY4e1P[RANSOMWARE]{]S/{w?*
+```
+
+**STEP**
+1. nano virus.c
+2. gcc virus.c -o virus
+3. ./virus [file directory]
 
 # Soal 2
 
 
 **soal :**
 
+Paul adalah seorang mahasiswa semester 4 yang diterima magang di perusahaan XYZ. Pada hari pertama magang, ia diberi tugas oleh atasannya untuk membuat program manajemen file sederhana. Karena kurang terbiasa dengan bahasa C dan environment Linux, ia meminta bantuan kalian untuk mengembangkan program tersebut.
 
+- Atasannya meminta agar program tersebut dapat berjalan secara daemon dan dapat mengunduh serta melakukan unzip terhadap file berikut. Atasannya juga meminta program ini dibuat tanpa menggunakan command system()
 
+- Setelah ditelusuri, ternyata hanya 6 file teratas yang nama filenya tidak dienkripsi. Oleh karena itu, bantulah Paul untuk melakukan dekripsi terhadap nama file ke-7 hingga terakhir menggunakan algoritma ROT19
 
+- Setelah dekripsi selesai, akan terlihat bahwa setiap file memuat salah satu dari kode berikut: r3N4mE, d3Let3, dan m0V3. Untuk setiap file dengan nama yang memuat kode d3Let3, hapus file tersebut. Sementara itu, untuk setiap file dengan nama yang memuat kode r3N4mE, lakukan hal berikut:
 
+  - Jika ekstensi file adalah “.ts”, rename filenya menjadi “helper.ts”
+  - Jika ekstensi file adalah “.py”, rename filenya menjadi “calculator.py”
+  - Jika ekstensi file adalah “.go”, rename filenya menjadi “server.go”
+  - Jika file tidak memuat salah satu dari ekstensi diatas, rename filenya menjadi “renamed.file”
+
+- Atasan Paul juga meminta agar program ini dapat membackup dan merestore file. Oleh karena itu, bantulah Paul untuk membuat program ini menjadi 3 mode, yaitu:
+
+  - default: program berjalan seperti biasa untuk me-rename dan menghapus file. Mode ini dieksekusi ketika program dijalankan tanpa argumen tambahan, yaitu dengan command ./management saja
+  - backup: program memindahkan file dengan kode m0V3 ke sebuah folder bernama “backup”
+  - restore: program mengembalikan file dengan kode m0V3 ke folder sebelum file tersebut dipindahkan
+  - Contoh penggunaan: ./management -m backup
+
+- Terkadang, Paul perlu mengganti mode dari program ini tanpa menghentikannya terlebih dahulu. Oleh karena itu, bantulan Paul untuk mengintegrasikan kemampuan untuk mengganti mode ini dengan mengirim sinyal ke daemon, dengan ketentuan:
+
+  - SIGRTMIN untuk mode default
+  - SIGUSR1 untuk mode backup
+  - SIGUSR2 untuk mode restore
+  - Contoh penggunaan: kill -SIGUSR2 [pid_program]
+
+- Program yang telah dibuat ini tidak mungkin akan dijalankan secara terus-menerus karena akan membebani sistem. Maka dari itu, bantulah Paul untuk membuat program ini dapat dimatikan dengan aman dan efisien
+
+- Terakhir, program ini harus berjalan setiap detik dan mampu mencatat setiap peristiwa yang terjadi ke dalam file .log yang bernama “history.log” dengan ketentuan:
+
+  - Format: **[name_user][HH:MM:SS] - [name_file] - [action]**
+  - nama_user adalah username yang melakukan action terhadap file
+  - Format action untuk setiap kode:
+    - kode r3N4mE: Successfully renamed.
+    - kode d3Let3: Successfully deleted.
+    - mode backup: Successfully moved to backup.
+    - mode restore: Successfully restored from backup.
+  - Contoh pesan log:
+    - [paul][00:00:00] - r3N4mE.ts - Successfully renamed.
+    - [paul][00:00:00] - m0V3.xk1 - Successfully restored from backup.
+
+- soal_2/
+  
+    ├── history.log
+  
+    ├── management.c
+  
+    └── library/
+  
+        └── backup/
+
+**STEP**
+1. nano management.c
+2. gcc management.c -o management
+3. ./management (mode default)
+4. ./management -backup (mode backup)
+5. ./management -restore (mode restore)
+6. kill -SIGRTMIN [pid] (mengirim signal ke program untuk berganti ke mode default)
+7. kill -SIGUSR1 [pid] (mengirim signal ke program untuk berganti ke mode backup)
+8. kill -SIGUSR2 [pid] (mengirim signal ke program untuk berganti ke mode restore)
 
 # Soal 3
 
