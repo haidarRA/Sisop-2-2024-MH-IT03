@@ -116,7 +116,7 @@ Paul adalah seorang mahasiswa semester 4 yang diterima magang di perusahaan XYZ.
 
 **STEP**
 1. nano management.c
-2. gcc management.c -o management
+2. gcc management.c -o management -lcurl
 3. ./management (mode default)
 4. ./management -backup (mode backup)
 5. ./management -restore (mode restore)
