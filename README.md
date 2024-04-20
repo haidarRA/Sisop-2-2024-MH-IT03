@@ -100,6 +100,19 @@ Salomo memiliki passion yang sangat dalam di bidang sistem operasi. Saat ini, di
   Command ini hanya mematikan aplikasi yang dijalankan dengan 
   ./setup -f file.conf
 
+**STEP**
+1. nano setup.c (membuka setup.c)
+2. gcc setup.c -o setup 
+3. ./setup -o firefox 2 wireshark 2
+4. nano file.conf
+5. ./setup -f file.conf
+6. ./setup -k
+7. ./setup -k file.conf 
+
+
+
+
+
 
 
 
