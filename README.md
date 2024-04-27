@@ -138,6 +138,7 @@ Paul adalah seorang mahasiswa semester 4 yang diterima magang di perusahaan XYZ.
 8. kill -SIGUSR2 [pid] (mengirim signal ke program untuk berganti ke mode restore)
 
 **DOKUMENTASI**
+
 ![image](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/149871906/42f22a10-10b7-4fb4-81ec-9fda875d4c16)
 
 **PERMASALAHAN YANG DIALAMI SAAT PENGERJAAN**
