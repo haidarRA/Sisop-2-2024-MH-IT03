@@ -67,6 +67,8 @@ Setelah decipher:
 
 ![image](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/149871906/51308fa6-5f50-47a9-965f-dff392c7f2bc)
 
+**PERMASALAHAN YANG DIALAMI SAAT PENGERJAAN**
+1. Program tidak bisa berjalan secara daemon
 
 # Soal 2
 
@@ -138,6 +140,10 @@ Paul adalah seorang mahasiswa semester 4 yang diterima magang di perusahaan XYZ.
 **DOKUMENTASI**
 ![image](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/149871906/42f22a10-10b7-4fb4-81ec-9fda875d4c16)
 
+**PERMASALAHAN YANG DIALAMI SAAT PENGERJAAN**
+1. Tidak bisa unzip file.
+2. Mode program tidak berubah meskipun sudah diberi signal SIGRTMIN, SIGUSR1, maupun SIGUSR2.
+3. Ada beberapa program yang berjalan secara bersamaan setelah di-run menggunakan command secara berturut - turut. Contohnya, jika saya menggunakan command ./management -m backup setelah menggunakan command ./management, maka akan ada dua proses ganda dengan nama "./management" dan "./management -m backup". Padahal seharusnya hanya ada satu yang seharusnya berjalan.
 
 # Soal 3
 
