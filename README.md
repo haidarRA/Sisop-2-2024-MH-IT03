@@ -57,6 +57,17 @@ Pd&f8$F5=E?@#[6jd{TJKj][SPYWARE]{KK1?hz384$ge@iba5GAj$gqB41
 2. gcc virus.c -o virus
 3. ./virus [file directory]
 
+**DOKUMENTASI**
+
+Sebelum decipher:
+
+![image](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/149871906/add499da-c971-4ccb-837c-d3fcfd978bd0)
+
+Setelah decipher:
+
+![image](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/149871906/51308fa6-5f50-47a9-965f-dff392c7f2bc)
+
+
 # Soal 2
 
 
@@ -123,6 +134,10 @@ Paul adalah seorang mahasiswa semester 4 yang diterima magang di perusahaan XYZ.
 6. kill -SIGRTMIN [pid] (mengirim signal ke program untuk berganti ke mode default)
 7. kill -SIGUSR1 [pid] (mengirim signal ke program untuk berganti ke mode backup)
 8. kill -SIGUSR2 [pid] (mengirim signal ke program untuk berganti ke mode restore)
+
+**DOKUMENTASI**
+![image](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/149871906/42f22a10-10b7-4fb4-81ec-9fda875d4c16)
+
 
 # Soal 3
 
