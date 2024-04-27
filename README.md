@@ -146,6 +146,9 @@ Paul adalah seorang mahasiswa semester 4 yang diterima magang di perusahaan XYZ.
 2. Mode program tidak berubah meskipun sudah diberi signal SIGRTMIN, SIGUSR1, maupun SIGUSR2.
 3. Ada beberapa program yang berjalan secara bersamaan setelah di-run menggunakan command secara berturut - turut. Contohnya, jika saya menggunakan command ./management -m backup setelah menggunakan command ./management, maka akan ada dua proses ganda dengan nama "./management" dan "./management -m backup". Padahal seharusnya hanya ada satu yang seharusnya berjalan.
 
+**REVISI**
+1. Program yang berjalan hanya 1, bukan 2. Jika dijalankan command yang lain, maka program sebelumnya akan di-terminate terlebih dahulu dan digantikan oleh program yang baru.
+
 # Soal 3
 
 
