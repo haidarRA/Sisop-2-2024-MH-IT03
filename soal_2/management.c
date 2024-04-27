@@ -19,10 +19,6 @@
 #include <errno.h>
 #include <sys/wait.h>
 
-//#define LOG_FILE "test.log"
-
-//static FILE *fptr = NULL;
-
 int state = 0;
 /*
 1 = default
@@ -293,39 +289,6 @@ static void sig_usr(int signo) {
 }
 
 int main(int argc, char *argv[]) {
-/*
-    if (strcmp(argv[1], "-m") != 0 && argc > 1) {
-        fprintf(stderr, "Usage: \n%s\n%s -m backup\n%s -m restore\n", argv[0], argv[0], argv[0]);
-        fprintf(stderr, "Signals: \nkill -SIGRTMIN <pid> to enter default mode.\nkill -SIGUSR1 <pid> to enter backup mode.\nkill -SIGUSR2 <pid> to enter restore mode.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    if (argc > 1 && strcmp(argv[1], "-m") == 0) {
-        if (argc < 3) {
-            fprintf(stderr, "Usage: \n%s\n%s -m backup\n%s -m restore\n", argv[0], argv[0], argv[0]);
-        fprintf(stderr, "Signals: \nkill -SIGRTMIN <pid> to enter default mode.\nkill -SIGUSR1 <pid> to enter backup mode.\nkill -SIGUSR2 <pid> to enter restore mode.\n");
-            exit(EXIT_FAILURE);
-        }
-        
-        if (strcmp(argv[2], "backup") == 0) {
-            state = 2;
-        }
-        else if (strcmp(argv[2], "restore") == 0) {
-            state = 3;
-        }
-        else if (strcmp(argv[1], "-stop") == 0) {
-            state = 4;
-        } 
-        else {
-            fprintf(stderr, "Usage: \n%s\n%s -m backup\n%s -m restore\n", argv[0], argv[0], argv[0]);
-            fprintf(stderr, "Signals: \nkill -SIGRTMIN <pid> to enter default mode.\nkill -SIGUSR1 <pid> to enter backup mode.\nkill -SIGUSR2 <pid> to enter restore mode.\n");
-            exit(EXIT_FAILURE);
-        }
-    }
-    else {
-	state = 1;
-    } 
-*/
 
     pid_t pid, sid;
 
@@ -376,7 +339,6 @@ int main(int argc, char *argv[]) {
 
     if (isNew == 1) {
     	fpid = fopen("pid.log", "w");
-    	sid++;
     	fprintf(fpid, "%d", sid);
     	fclose(fpid);
     }
