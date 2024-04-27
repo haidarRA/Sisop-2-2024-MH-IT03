@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <time.h>
+#include <ctype.h>
 
 #define MAX_COMMAND_LENGTH 100
 #define MAX_USERNAME_LENGTH 20
@@ -52,8 +53,6 @@ void delete_line(char *file_name, char *string) {
         printf("Error: Unable to rename temporary file.\n");
         return;
     }
-
-    //printf("Line containing \"%s\" deleted successfully from %s.\n", string, file_name);
 }
 
 int check_line(char *file_name, char *string) {
@@ -79,7 +78,6 @@ void print_options() {
     printf("  -c : Mengendalikan proses pengguna\n");
     printf("  -a : Melepaskan kendali atas proses pengguna\n");
 }
-
 
 void log_action(char *username, pid_t pid, char *process_name, int status) {
     time_t now;
@@ -116,10 +114,13 @@ void log_action(char *username, pid_t pid, char *process_name, int status) {
     fclose(log_file);
 }
 
-
 void monitor_user_processes(char *username) {
     if (!file_exists("enable")) {
     	FILE *fdisable = fopen("enable", "w");
+    	if (fdisable == NULL) {
+            printf("Error: Unable to create file enable.\n");
+            return;
+        }
     	fclose(fdisable);
     }
     
@@ -144,10 +145,20 @@ void monitor_user_processes(char *username) {
     
                 // Extract PID and process name
             char *token = strtok(line, " ");
-            pid_t pid = atoi(token);
+            pid = atoi(token);
             token = strtok(NULL, " ");
-            char *process_name = strtok(NULL, "\n");
-    
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            char *process_name = strtok(NULL, " ");
+
             if (pid != getpid()) {
                     // Log the process
                 log_action(username, pid, process_name, 1);
@@ -158,7 +169,6 @@ void monitor_user_processes(char *username) {
         sleep(1);
     }
 }
-
 
 void stop_monitoring(char *username) {
     FILE *file = fopen("enable", "r");
@@ -196,12 +206,23 @@ void control_user_process(char *username) {
 
         char line[MAX_COMMAND_LENGTH];
         while (fgets(line, sizeof(line), process_list) != NULL) {
+            // Mengabaikan karakter non-digit
+            int i;
+            for (i = 0; line[i] != '\0'; i++) {
+                if (!isdigit(line[i])) {
+                    line[i] = ' ';
+                }
+            }
             pid_t pid = atoi(line);
-            kill(pid, SIGSTOP);
-            log_action(username, pid, "unknown", 0); // Log as GAGAL since the process is being stopped forcibly
+            // Hentikan proses yang bukan proses sistem
+            if (pid > 1000 && pid != getpid()) {
+                kill(pid, SIGSTOP);
+                log_action(username, pid, "unknown", 0); // Log as GAGAL since the process is being stopped forcibly
+            }
         }
 
         pclose(process_list);
+
         sleep(1);
     }
 }
@@ -228,6 +249,10 @@ int main(int argc, char *argv[]) {
     char *option = argv[1];
     char *username = argv[2];
     FILE *enable = fopen("enable", "a");
+    if (enable == NULL) {
+        printf("Error: Unable to open file enable.\n");
+        return EXIT_FAILURE;
+    }
 
     if (strcmp(option, "-m") == 0) {
         // Menjalankan fitur pemantauan
@@ -255,7 +280,21 @@ int main(int argc, char *argv[]) {
     } else if (strcmp(option, "-c") == 0) {
         // Mengendalikan proses pengguna
         printf("Mengendalikan proses pengguna untuk pengguna: %s\n", username);
-        control_user_process(username);
+        fflush(stdout); // Flush output buffer
+
+        pid_t pid = fork();
+        if (pid < 0) {
+            perror("Error forking process");
+            return EXIT_FAILURE;
+        } else if (pid == 0) {
+            // Proses anak
+            control_user_process(username);
+            exit(EXIT_SUCCESS);
+        } else {
+            // Proses induk
+            printf("Kontrol dimulai.\n");
+            return EXIT_SUCCESS;
+        }
     } else if (strcmp(option, "-a") == 0) {
         // Melepaskan kendali atas proses pengguna
         printf("Melepaskan kendali atas proses pengguna untuk pengguna: %s\n", username);
@@ -266,5 +305,7 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
+    fclose(enable);
     return EXIT_SUCCESS;
 }
+
