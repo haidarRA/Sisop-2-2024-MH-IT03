@@ -554,7 +554,8 @@ Salomo memiliki passion yang sangat dalam di bidang sistem operasi. Saat ini, di
 2. gcc setup.c -o setup (proses kompilasi kode sumber C yang disimpan dalam file setup.c menjadi sebuah program)
 3. ./setup -o firefox 2 wireshark 2 (membuka 2 jendela aplikasi firefox dan 2 jendela aplikasi wireshark)
 4. nano file.conf (membuka file.conf)
-   ![Screenshot 2024-04-20 140837](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/150374973/50c72c19-c693-4883-8a67-62df57c58694)
+![Screenshot 2024-04-20 142109](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/150374973/443c1d8f-483e-4a85-b50a-c7cc0e50232c)
+
 
 5. ./setup -f file.conf (menginstruksikan program setup untuk menggunakan file konfigurasi file.conf)
 6. ./setup -k (mematikan semua aplikasi yg dijalankan oleh program)
