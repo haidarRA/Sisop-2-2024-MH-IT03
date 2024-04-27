@@ -518,6 +518,11 @@ int main(int argc, char *argv[]) {
 ![ss2 modul 2](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/151866048/c429128e-f78c-4cfd-af14-133245fcd787)
 
 
+**PERMASALAHAN YANG DIALAMI SAAT PENGERJAAN**
+1. ketika merun ./admin -c <user> tiba-tiba vm saya ngehang/force stop
+
+
+
 # Soal 4
 
 **soal :**
