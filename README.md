@@ -557,7 +557,7 @@ Salomo memiliki passion yang sangat dalam di bidang sistem operasi. Saat ini, di
 ![Screenshot 2024-04-20 142109](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/150374973/443c1d8f-483e-4a85-b50a-c7cc0e50232c)
 
 
-5. ./setup -f file.conf (menginstruksikan program setup untuk menggunakan file konfigurasi file.conf)
+5. ./setup -f file.conf (menginstruksikan program setup untuk menggunakan file konfigurasi file.conf dengan membuka 3 jendela aplikasi firefox dan 3 jendela aplikasi wireshark)
 6. ./setup -k (mematikan semua aplikasi yg dijalankan oleh program)
 7. ./setup -k file.conf (mematikan aplikasi yang dijalankan sesuai dengan file konfigurasi)
 
