@@ -17,6 +17,7 @@
 #include <syslog.h>
 #include <signal.h>
 #include <errno.h>
+#include <sys/wait.h>
 
 //#define LOG_FILE "test.log"
 
@@ -339,10 +340,45 @@ int main(int argc, char *argv[]) {
     }
 
     umask(0);
-
+    
     sid = setsid();
     if (sid < 0) {
         exit(EXIT_FAILURE);
+    }
+    
+    const char* pidlog = "pid.log";
+    struct stat sb;
+     	
+    FILE *fpid;
+    int isNew = 0;
+    
+    if (stat(pidlog, &sb) != 0) {
+    	fpid = fopen(pidlog, "w");
+	isNew = 1;
+    	fclose(fpid);
+    }
+    
+    fpid = fopen("pid.log", "r");
+    if (fpid == NULL) {
+    	fprintf(stderr, "Can't open the PID log\n");
+    	exit(EXIT_FAILURE);
+    }
+    	    
+    int closepid;
+    while (fscanf(fpid, "%d", &closepid) != EOF) {
+	kill(closepid, SIGTERM);
+    }
+    fclose(fpid);
+    
+    fpid = fopen("pid.log", "w");
+    fprintf(fpid, "%d", sid);
+    fclose(fpid);
+
+    if (isNew == 1) {
+    	fpid = fopen("pid.log", "w");
+    	sid++;
+    	fprintf(fpid, "%d", sid);
+    	fclose(fpid);
     }
 
     close(STDIN_FILENO);
@@ -366,6 +402,7 @@ int main(int argc, char *argv[]) {
 	const char* url = "drive.google.com/uc?export=download&id=1rUIZmp10lXLtCIH3LAZJzRPeRks3Crup";
         const char* filename = "library.zip";
         const char* checkname = "library";
+
         char* user = getlogin();
     
         int renamefile;
@@ -449,9 +486,6 @@ int main(int argc, char *argv[]) {
             else if (strcmp(argv[2], "restore") == 0) {
                 state = 3;
             }
-            else if (strcmp(argv[1], "-stop") == 0) {
-            	state = 4;
-            } 
             else {
                 fprintf(stderr, "Usage: %s\n%s -m backup\n%s -m restore", argv[0], argv[0], argv[0]);
                 exit(EXIT_FAILURE);
@@ -460,8 +494,7 @@ int main(int argc, char *argv[]) {
         else {
 	    state = 1;
         } 
-
-
+	
 	if(isexec == 0) {
             if (state == 1) { //default
 	    	defaultmode();
@@ -475,10 +508,8 @@ int main(int argc, char *argv[]) {
 	    	restoremode();
 	    	isexec = 1;
             }
-            else if (state == 4) { //stop the program
-            	exit(EXIT_SUCCESS);
-            }
 	}
+	
         sleep(1);
 
 //        fclose(fptr);
