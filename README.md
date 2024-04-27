@@ -153,15 +153,24 @@ Pak Heze adalah seorang admin yang baik. Beliau ingin membuat sebuah program adm
 
   STEP SISOP NO 3
 
-  1. touch admin.c (membuat admin.c)
-  2. sudo chmod +x admin.c (memberi permission pada file admin.c)
-  3. nano admin.c (membuka admin.c menggunakan nano)
-  4. ./admin -m kali (1)
-  5. check file kali.log
-  6. ./admin -s kali (2)
-  7. check file kali.log
-  8. ./admin -c kali
-  9. ./admin -a kali
+  1 touch admin.c (membuat admin.c)
+  
+  2 sudo chmod +x admin.c (memberi permission pada file admin.c)
+  
+  3 nano admin.c (membuka admin.c menggunakan nano)
+  
+  4 ./admin -m kali (1)
+  
+  5 check file kali.log
+  
+  6 ./admin -s kali (2)
+  
+  7 check file kali.log
+  
+  8 ./admin -c kali
+  
+  9 ./admin -a kali
+  
 
      ISI SCRIPT admin.c
 ```
@@ -479,7 +488,10 @@ int main(int argc, char *argv[]) {
 ```
 
 **DOKUMENTASI**
+
+
 ![ss modul 2](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/151866048/51ac701c-9e91-4b56-91bf-5d25acd58ce7)
+
 
 ![ss2 modul 2](https://github.com/haidarRA/Sisop-2-2024-MH-IT03/assets/151866048/c429128e-f78c-4cfd-af14-133245fcd787)
 
